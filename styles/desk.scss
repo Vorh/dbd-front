@@ -1,0 +1,13 @@
+$desk-height:95%;
+
+@import "todo";
+
+
+#todo-desk {
+  display: none;
+  height: $desk-height;
+  width: 80%;
+  position: absolute;
+  left: 20%;
+  top:5%;
+}

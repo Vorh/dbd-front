@@ -1,5 +1,4 @@
 
-
 #menu {
 
   width: 20%;
@@ -10,32 +9,49 @@
 
   #logo {
     cursor: pointer;
-    font-size: 30px;
+    font-size: 28px;
     color: white;
 
     margin: 10px;
     i {
-      margin-left: 15px;
+      margin-left: 10px;
       margin-right: 15px;
     }
   }
 
+
+  // Items menu
   ul {
     width: 100%;
-    font-size: 24px;
-    color: $font-menu;
+    font-size: 25px;
+    color: $white-dark;
     cursor: pointer;
     list-style-type: none;
+    padding: 0;
   }
 
   li {
     width: 100%;
-    margin-top:5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+
+    i {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
   }
 
-  li i {
-    margin-right: 20px;
+  li:hover, li.hovered {
+    background: $dark-navy;
+    color: $blue-dark;
+    box-shadow: 1px 1px 1px black;
+
+    i {
+      color: #ff00ff;
+    }
   }
+
 }
 
 

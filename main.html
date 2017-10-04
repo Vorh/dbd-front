@@ -5,18 +5,35 @@
     <title>Title</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    <script src="js/utils.js"></script>
+    <script src="js/menu.js"></script>
 </head>
 <body>
 <header id="header"></header>
 <div id="menu">
     <div id="logo"><i class="fa fa-cogs" aria-hidden="true"></i>DLD</div>
         <ul>
-            <li><i class="fa fa-cog" aria-hidden="true"></i>Todo</li>
-            <li><i class="fa fa-calendar" aria-hidden="true"></i>Calendar</li>
-            <li><i class="fa fa-desktop" aria-hidden="true"></i>Board</li>
+            <li id="todo-menu-item"><i class="fa fa-cog" aria-hidden="true"></i>Todo</li>
+            <li id="calendar-menu-item"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar</li>
+            <li id="goals-menu-item"><i class="fa fa-connectdevelop" aria-hidden="true"></i>Goals</li>
+            <li id="board-menu-item"><i class="fa fa-desktop" aria-hidden="true"></i>Board</li>
         </ul>
 </div>
-<div id="content"></div>
+<div id="todo-desk">
+    <div id="activity">
+        <div class="desk-header">
+            <a class="desk-caption">Activity</a>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="desk-header">
+            <a class="desk-caption">Content</a>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
