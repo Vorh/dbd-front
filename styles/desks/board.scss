@@ -1,0 +1,21 @@
+
+#board-desk {
+  display: none;
+}
+
+.board-activity {
+  margin-left: 15px;
+  float: left;
+  width: 55%;
+  @extend .desk-layout;
+}
+
+.board-content {
+  float: right;
+  width: 40%;
+  margin-right: 15px;
+  @extend .desk-layout;
+}
+
+
+

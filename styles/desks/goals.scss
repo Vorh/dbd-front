@@ -1,0 +1,19 @@
+
+
+#goals-desk{
+  display: none;
+}
+
+.goals-activity {
+  margin-left: 15px;
+  float: left;
+  width: 55%;
+  @extend .desk-layout;
+}
+
+.goals-content {
+  float: right;
+  width: 40%;
+  margin-right: 15px;
+  @extend .desk-layout;
+}

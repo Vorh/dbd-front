@@ -16,7 +16,7 @@ function $(id) {
         this.classList.add(className);
     };
 
-    $.addEvent= function (type, event) {
+    $.addEvent= function (type, event ) {
         this.addEventListener(type, event);
     };
 

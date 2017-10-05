@@ -3,26 +3,41 @@
  */
 
 
-
+var itemsMenu;
+var desks;
 
 window.onload = function () {
     console.log("onload");
 
 
 
-    var items = $('menu').getElementsByTagName('li');
+    itemsMenu = $('menu').getElementsByTagName('li');
+    desks = $('desk').children;
 
-    for(var i =0 ; i < items.length ; i++){
-        console.log("Item menu: " + items[i].id);
-        var item = $(items[i].id);
-        console.log(item);
-        var splitId = item.id.split('-');
-        item.addEvent("click",function () {
-            item.addClass("hovered");
-            $(splitId[0] + '-desk').setDisplay("block");
-        });
+
+    for(var i =0 ; i < itemsMenu.length ; i++){
+        var itemMenu = $(itemsMenu[i].id);
+        addEventSelectToItemMenu(itemMenu);
     }
 
 
 };
 
+function addEventSelectToItemMenu(item) {
+    item.addEvent("click",function () {
+        item.addClass("hovered");
+        splidId=item.id.split('-');
+        displayDesk()
+        $(splidId[0] + '-desk').setDisplay("block");
+    });
+}
+
+function displayDesk(id) {
+    for(var i=0; i < itemsMenu.length ; i++){
+        if (itemsMenu[i].id === id){
+            itemsMenu[i].style.display = "block";
+        }else {
+            itemsMenu[i].style.display = "none";
+        }
+    }
+}
