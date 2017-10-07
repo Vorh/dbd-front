@@ -28,30 +28,25 @@ window.onload = function () {
 
 function addEventSelectToItemMenu(itemMenu) {
     itemMenu.addEvent("click", function () {
-        selectItemMenu(itemMenu);
-        displayDesk(itemMenu.id);
+        switchMenu(itemMenu);
     });
 }
 
-function selectItemMenu(itemMenu) {
+function switchMenu(itemMenu) {
     for(var i =0 ; i < wss.length ; i++){
-        var tempMenu = wss[i].itemMenu;
-        if (itemMenu.id === tempMenu.id){
+
+        var tempItem = wss[i].itemMenu;
+        var tempDesk =wss[i].desk;
+
+        if (itemMenu.id === tempItem.id){
             itemMenu.addClass("hovered");
+            tempDesk.setDisplay("block");
         }else {
-            tempMenu.removeClass("hovered");
+            tempItem.removeClass("hovered");
+            tempDesk.setDisplay("none");
         }
+
     }
 }
 
-function displayDesk(idMenuItem) {
-    for (var i = 0; i < wss.length; i++) {
-        var tempDesk =wss[i].desk;
-        var tmpItem =wss[i].itemMenu;
-        if (tmpItem.id === idMenuItem) {
-            tempDesk.setDisplay("block");
-        } else {
-            tempDesk.setDisplay("none");
-        }
-    }
-}
+
