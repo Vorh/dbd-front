@@ -13,7 +13,7 @@ window.onload = function () {
     for (var i = 0; i < itemsMenu.length; i++) {
         var workspace = {};
         var tempItem = $(itemsMenu[i].id);
-        workspace.itemMenu = tempItem
+        workspace.itemMenu = tempItem;
         workspace.desk = extractDesk(tempItem.id);
         wss.push(workspace);
 
@@ -23,6 +23,10 @@ window.onload = function () {
     function extractDesk(id) {
         return $(id.split('-')[0] +'-desk');
     }
+
+
+
+
 
 };
 
