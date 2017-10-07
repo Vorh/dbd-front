@@ -16,6 +16,10 @@ function $(id) {
         this.classList.add(className);
     };
 
+    $.removeClass = function (className) {
+        this.classList.remove(className);
+    };
+
     $.addEvent= function (type, event ) {
         this.addEventListener(type, event);
     };

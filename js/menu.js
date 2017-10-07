@@ -2,42 +2,56 @@
  * Created by vorh on 10/1/17.
  */
 
-
-var itemsMenu;
-var desks;
+var wss; // workspaces
 
 window.onload = function () {
-    console.log("onload");
 
+    var itemsMenu = $('menu').getElementsByTagName('li');
 
+    wss = [];
 
-    itemsMenu = $('menu').getElementsByTagName('li');
-    desks = $('desk').children;
+    for (var i = 0; i < itemsMenu.length; i++) {
+        var workspace = {};
+        var tempItem = $(itemsMenu[i].id);
+        workspace.itemMenu = tempItem
+        workspace.desk = extractDesk(tempItem.id);
+        wss.push(workspace);
 
-
-    for(var i =0 ; i < itemsMenu.length ; i++){
-        var itemMenu = $(itemsMenu[i].id);
-        addEventSelectToItemMenu(itemMenu);
+        addEventSelectToItemMenu(workspace.itemMenu);
     }
 
+    function extractDesk(id) {
+        return $(id.split('-')[0] +'-desk');
+    }
 
 };
 
-function addEventSelectToItemMenu(item) {
-    item.addEvent("click",function () {
-        item.addClass("hovered");
-        splidId=item.id.split('-');
-        displayDesk()
-        $(splidId[0] + '-desk').setDisplay("block");
+function addEventSelectToItemMenu(itemMenu) {
+    itemMenu.addEvent("click", function () {
+        selectItemMenu(itemMenu);
+        displayDesk(itemMenu.id);
     });
 }
 
-function displayDesk(id) {
-    for(var i=0; i < itemsMenu.length ; i++){
-        if (itemsMenu[i].id === id){
-            itemsMenu[i].style.display = "block";
+function selectItemMenu(itemMenu) {
+    for(var i =0 ; i < wss.length ; i++){
+        var tempMenu = wss[i].itemMenu;
+        if (itemMenu.id === tempMenu.id){
+            itemMenu.addClass("hovered");
         }else {
-            itemsMenu[i].style.display = "none";
+            tempMenu.removeClass("hovered");
+        }
+    }
+}
+
+function displayDesk(idMenuItem) {
+    for (var i = 0; i < wss.length; i++) {
+        var tempDesk =wss[i].desk;
+        var tmpItem =wss[i].itemMenu;
+        if (tmpItem.id === idMenuItem) {
+            tempDesk.setDisplay("block");
+        } else {
+            tempDesk.setDisplay("none");
         }
     }
 }
