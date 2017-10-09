@@ -2,6 +2,7 @@
  * Created by vorh on 10/1/17.
  */
 
+
 var wss; // workspaces
 
 window.onload = function () {
@@ -25,7 +26,7 @@ window.onload = function () {
     }
 
 
-
+    todoService.createTodoListElements();
 
 
 };
