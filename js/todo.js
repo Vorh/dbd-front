@@ -10,6 +10,11 @@ function createTodo(caption, content,id) {
     this.content = content;
     this.isComplete = false;
     this.type = 1;
+
+    this.getHumanDate = function () {
+       return this.date.getDate() +"/"+this.date.getMonth() + "/" + this.date.getFullYear();
+    };
+
     return this;
 }
 
@@ -44,20 +49,29 @@ var todoService = (function () {
             todoLine.className = "todo-line";
 
             let todoLabel = document.createElement("div");
-            todoLabel.className = "todo-label";
-            todoLabel.innerHTML = 'Todo';
+            todoLabel.className = "todo-label todo";
+
+            let tag = document.createElement("i");
+            tag.innerHTML = "Todo";
+            todoLabel.appendChild(tag);
+
 
             let todoDate = document.createElement("div");
             todoDate.className = 'todo-date';
-            todoDate.innerHTML = todo.date;
+            todoDate.innerHTML = todo.getHumanDate();
 
             let todoCaption = document.createElement("div");
             todoCaption.className = "todo-caption";
             todoCaption.innerHTML = todo.content;
 
+            let todoBtn = document.createElement("div");
+            todoBtn.className = "todo-btn";
+            todoBtn.innerHTML = '<i><i class="fa fa-eye" aria-hidden="true"></i> View</i>';
+
             todoLine.appendChild(todoLabel);
             todoLine.appendChild(todoDate);
             todoLine.appendChild(todoCaption);
+            todoLine.appendChild(todoBtn);
 
             document.getElementById('todo-box').appendChild(todoLine);
 
