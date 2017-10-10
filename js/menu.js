@@ -26,10 +26,35 @@ window.onload = function () {
     }
 
 
+
+
+    forTest();
     todoService.createTodoListElements();
 
 
 };
+
+
+function forTest() {
+    var todo = createTodo('tete', "fdsfds",1);
+    var todo1 = createTodo('tete', "fdsfds",2);
+    var todo2 = createTodo('tete', "fdsfds",3);
+    var todo3 = createTodo('tete', "fdsfds",4);
+    var todo4 = createTodo('tete', "fdsfds",6);
+    var todo5 = createTodo('tete', "fdsfds",7);
+    var todo6 = createTodo('tete', "fdsfds",8);
+    var todo7 = createTodo('tete', "fdsfds",9);
+    var todo8 = createTodo('tete', "fdsfds",10);
+    todoService.addTodo(todo);
+    todoService.addTodo(todo1);
+    todoService.addTodo(todo2);
+    todoService.addTodo(todo3);
+    todoService.addTodo(todo4);
+    todoService.addTodo(todo5);
+    todoService.addTodo(todo6);
+    todoService.addTodo(todo7);
+    todoService.addTodo(todo8);
+}
 
 function addEventSelectToItemMenu(itemMenu) {
     itemMenu.addEvent("click", function () {
@@ -53,5 +78,7 @@ function switchMenu(itemMenu) {
 
     }
 }
+
+
 
 

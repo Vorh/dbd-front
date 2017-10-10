@@ -21,22 +21,22 @@
 
 }
 
-.todo-box {
+#todo-box {
   margin: 10px;
   overflow-y: scroll;
   max-height: 87%;
 }
-.todo-box::-webkit-scrollbar-track {
+#todo-box::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: $dark-bg;
 }
 
-.todo-box::-webkit-scrollbar {
+#todo-box::-webkit-scrollbar {
   width: 6px;
   background-color: $blue-white;
 }
 
-.todo-box::-webkit-scrollbar-thumb {
+#todo-box::-webkit-scrollbar-thumb {
   background-color: $blue-white;
 }
 

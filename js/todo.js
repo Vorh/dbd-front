@@ -3,26 +3,39 @@
  */
 
 
-function createTodo(caption, content) {
+function createTodo(caption, content,id) {
+    this.id = id;
     this.date = new Date();
     this.caption = caption;
     this.content = content;
     this.isComplete = false;
     this.type = 1;
+    return this;
 }
 
-var todoService = function () {
+
+var todoService = (function () {
 
 
     var todoList = [];
-    let todo = createTodo('tete', "fdsfds");
-    todoList.push(todo);
 
     function getTodoList() {
         return todoList;
     }
 
-    var createTodoListElements = function () {
+    var addTodo = function (todo) {
+        todoList.push(todo);
+    };
+
+    var removeTodo = function (id) {
+        for(let i=0; i< todoList.length; i++){
+            if (todoList[i].id === id){
+                todoList.splice(i,1);
+            }
+        }
+    };
+
+   var createTodoListElements = function () {
 
         for (let i = 0; i < todoList.length; i++) {
 
@@ -32,15 +45,15 @@ var todoService = function () {
 
             let todoLabel = document.createElement("div");
             todoLabel.className = "todo-label";
-            todoLabel.content = 'Todo';
+            todoLabel.innerHTML = 'Todo';
 
             let todoDate = document.createElement("div");
             todoDate.className = 'todo-date';
-            todoDate.content = todo.date;
+            todoDate.innerHTML = todo.date;
 
             let todoCaption = document.createElement("div");
             todoCaption.className = "todo-caption";
-            todoCaption.content = todo.content;
+            todoCaption.innerHTML = todo.content;
 
             todoLine.appendChild(todoLabel);
             todoLine.appendChild(todoDate);
@@ -51,9 +64,10 @@ var todoService = function () {
         }
     };
 
-    todoService.createTodoListElements = createTodoListElements;
-    return todoService;
-
-};
-
-
+    return {
+        createTodoListElements:createTodoListElements,
+        getTodoList:getTodoList,
+        removeTodo:removeTodo,
+        addTodo:addTodo
+    }
+})();
