@@ -45,6 +45,11 @@
   width: 45%;
   margin-right: 15px;
   @extend .desk-layout;
+
+  .todo-content-body {
+    margin: 15px;
+    color: $white-dark;
+  }
 }
 
 .desk-header {
@@ -117,7 +122,7 @@
   margin: 10px 0px 0px 10px;
   top: 35%;
   left: 1%;
-  color: #bfccd5;
+  color: $white-dark;
   font-size: 15px;
   font-weight: bold;
 }
