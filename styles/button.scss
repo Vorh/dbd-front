@@ -1,0 +1,16 @@
+
+.bnt {
+  width: 95px;
+  height: 23px;
+  margin: 5px;
+  background: $m-green;
+  padding: 3px;
+  text-align: center;
+  float: right;
+  cursor: pointer;
+
+  &:hover {
+    background: #00b65b;
+    box-shadow: 2px 2px 2px;
+  }
+}
