@@ -23,7 +23,7 @@
 
 #todo-box {
   margin: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 87%;
 }
 #todo-box::-webkit-scrollbar-track {
@@ -128,13 +128,17 @@
 }
 
 .todo-caption {
+  min-height: 45px;
+  background: none;
+  border: none;
   position: absolute;
   left: 20%;
-  top:0%;
+  top: 0%;
   color: #c0ccd5;
   font-size: 18px;
   font-weight: bold;
-  width: 65%;
+  width: 60%;
+  cursor: pointer;
 }
 
 .todo-btn {
