@@ -172,3 +172,30 @@
   box-shadow: 0px 1px 3px 0px #060606;
 
 }
+
+
+
+.modal-todo {
+  width: 20%;
+  height: 30%;
+
+  input {
+    color: $white-dark;
+    font-weight: bold;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+    height: 15px;
+    padding: 5px;
+    background: $dark-blue;
+    outline: none;
+    border: 1px solid $dark-navy;
+  }
+
+  .create {
+    float: left;
+    margin: 10px 0 0 0 ;
+  }
+
+}
+
+
