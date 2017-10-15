@@ -37,6 +37,10 @@ function initTodo() {
         let todo = new CreateTodo(caption,content,1);
 
         todoService.addTodo(todo);
+
+        $('modal-todo-caption').clear();
+        $('modal-todo-content').clear();
+        modalCreateTodo.setDisplay('none')
     });
 
 }

@@ -24,6 +24,9 @@ function $(id) {
         this.addEventListener(type, event);
     };
 
+    $.clear = function () {
+      $.value = '';
+    };
 
     return $;
 }
