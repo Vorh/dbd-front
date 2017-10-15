@@ -27,7 +27,7 @@ window.onload = function () {
     }
 
 
-
+    initTodo();
 
     forTest();
     todoService.createTodoListElements();

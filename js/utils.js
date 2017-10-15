@@ -24,6 +24,7 @@ function $(id) {
         this.addEventListener(type, event);
     };
 
+
     return $;
 }
 

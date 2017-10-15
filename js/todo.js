@@ -17,6 +17,32 @@ function CreateTodo(caption, content, id) {
 }
 
 
+function initTodo() {
+    let btn = $('btnCreateTodo');
+
+    let modalCreateTodo =$('modal-createTodo');
+    btn.addEvent('click',function () {
+        modalCreateTodo.setDisplay('block');
+    });
+
+    modalCreateTodo.getElementsByClassName('close')[0].addEventListener('click',function () {
+        modalCreateTodo.setDisplay('none');
+
+    });
+
+
+    modalCreateTodo.getElementsByClassName('create')[0].addEventListener('click',function () {
+        let caption  = $('modal-todo-caption').value;
+        let content = $('modal-todo-content').value;
+        let todo = new CreateTodo(caption,content,1);
+
+        todoService.addTodo(todo);
+    });
+
+}
+
+
+
 var todoService = (function () {
 
 
