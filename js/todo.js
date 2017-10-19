@@ -31,7 +31,7 @@ function initTodo() {
     });
 
 
-    modalCreateTodo.getElementsByClassName('create')[0].addEventListener('click',function () {
+    modalCreateTodo.getElementsByClassName('green')[0].addEventListener('click',function () {
         let caption  = $('modal-todo-caption').value;
         let content = $('modal-todo-content').value;
         let todo = new CreateTodo(caption,content,1);
@@ -41,6 +41,12 @@ function initTodo() {
         $('modal-todo-caption').clear();
         $('modal-todo-content').clear();
         modalCreateTodo.setDisplay('none')
+    });
+
+
+    $('btnDeleteTodo').addEvent('click',function () {
+       let todo = todoService.getSelectedTodo();
+       todoService.removeTodo(todo.id);
     });
 
 }
@@ -69,8 +75,8 @@ function insertDocTodo(todo) {
     todoBtn.className = "todo-btn";
     todoBtn.innerHTML = '<i><i class="fa fa-eye" aria-hidden="true"></i> View</i>';
     todoBtn.addEventListener('click', function () {
-        let todoContentBody = $('todo-content').getElementsByClassName('todo-content-body')[0];
-        todoContentBody.innerHTML = todo.content;
+        displayTodoContent(todo);
+        todoService.selectTodo(todo);
     });
 
     todoLine.appendChild(todoLabel);
@@ -81,44 +87,70 @@ function insertDocTodo(todo) {
     return todoLine;
 }
 
+
+function displayTodoContent(todo) {
+    let todoContentBody = $('todo-content').getElementsByClassName('todo-content-body')[0];
+    todoContentBody.innerHTML = todo.content;
+
+    $('btnDoneTodo').setDisplay('block');
+    $('btnEditTodo').setDisplay('block');
+    $('btnDeleteTodo').setDisplay('block');
+
+}
+
 var todoService = (function () {
 
-
+    let selectedTodo;
     let todoList = [];
-    let subscribesAddTodo = [];
+    let subscribesObservers = [];
 
 
     function getTodoList() {
         return todoList;
     }
 
+    function getSelectTodo() {
+        return selectedTodo;
+    }
+
     let addTodo = function (todo) {
         todoList.push(todo);
 
-        for (let i =0; i<subscribesAddTodo.length; i++){
-            subscribesAddTodo[i].notify(todo);
+        for (let i =0; i<subscribesObservers.length; i++){
+            subscribesObservers[i].addTodo(todo);
         }
     };
 
     let removeTodo = function (id) {
         for (let i = 0; i < todoList.length; i++) {
             if (todoList[i].id === id) {
-                todoList.splice(i, 1);
+
+                let deletedTodo = todoList[i];
+                todoList.splice(i, 1); // remote object via splice
+
+                for (let i =0; i<subscribesObservers.length; i++){
+                    subscribesObservers[i].removeTodo(deletedTodo);
+                }
+
             }
         }
     };
 
-
-    let subscribeAddTodo = function(id, func){
-           let event = {
-               id:id,
-               notify:func
-           };
-
-           subscribesAddTodo.push(event);
+    let selectTodo = function (todo) {
+        selectedTodo = todo;
     };
 
-    let createTodoListElements = function () {
+    let subscribeObserver = function(id, addTodo, removeTodo){
+           let event = {
+               id:id,
+               addTodo:addTodo,
+               removeTodo:removeTodo
+           };
+
+           subscribesObservers.push(event);
+    };
+
+    let paintTodoList = function () {
 
         for (let i = 0; i < todoList.length; i++) {
 
@@ -128,11 +160,13 @@ var todoService = (function () {
     };
 
     return {
-        createTodoListElements: createTodoListElements,
+        paintTodoList: paintTodoList,
         getTodoList: getTodoList,
         removeTodo: removeTodo,
         addTodo: addTodo,
-        subscribeAddTodo:subscribeAddTodo
+        subscribeObserver:subscribeObserver,
+        selectTodo:selectTodo,
+        getSelectedTodo:getSelectTodo
     }
 })
 ();

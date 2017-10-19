@@ -30,9 +30,14 @@ window.onload = function () {
     initTodo();
 
     forTest();
-    todoService.createTodoListElements();
-    todoService.subscribeAddTodo('modalAddTodo',function (todo) {
+    todoService.paintTodoList();
+    todoService.subscribeObserver('modalAddTodo',function (todo) {
         document.getElementById('todo-box').appendChild(insertDocTodo(todo));
+    },
+    function (todo) {
+        todoService.paintTodoList();
+
+        alert(todo.caption + " delete")
     })
 
 };

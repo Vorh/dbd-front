@@ -3,14 +3,36 @@
   width: 95px;
   height: 23px;
   margin: 5px;
-  background: $m-green;
   padding: 3px;
   text-align: center;
   float: right;
   cursor: pointer;
+  color: $white-dark;
+  font-weight: bold;
+  font-size: 14px;
 
   &:hover {
-    background: #00b65b;
     box-shadow: 2px 2px 2px;
+    color: #192a34;
+
   }
+
+
+  &.green {
+    background: $m-green;
+  }
+
+  &.red {
+    background: $m-red;
+  }
+
+  &.blue {
+    background: $blue-white;
+  }
+}
+
+
+
+#btnDeleteTodo,#btnEditTodo, #btnDoneTodo {
+  display: none;
 }
