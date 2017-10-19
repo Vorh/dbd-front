@@ -31,7 +31,9 @@ window.onload = function () {
 
     forTest();
     todoService.createTodoListElements();
-
+    todoService.subscribeAddTodo('modalAddTodo',function (todo) {
+        document.getElementById('todo-box').appendChild(insertDocTodo(todo));
+    })
 
 };
 

@@ -45,22 +45,62 @@ function initTodo() {
 
 }
 
+function insertDocTodo(todo) {
+    let todoLine = document.createElement("div");
+    todoLine.className = "todo-line";
 
+    let todoLabel = document.createElement("div");
+    todoLabel.className = "todo-label todo";
+
+    let tag = document.createElement("i");
+    tag.innerHTML = "Todo";
+    todoLabel.appendChild(tag);
+
+
+    let todoDate = document.createElement("div");
+    todoDate.className = 'todo-date';
+    todoDate.innerHTML = todo.getHumanDate();
+
+    let todoCaption = document.createElement("input");
+    todoCaption.className = "todo-caption";
+    todoCaption.value = todo.caption;
+
+    let todoBtn = document.createElement("div");
+    todoBtn.className = "todo-btn";
+    todoBtn.innerHTML = '<i><i class="fa fa-eye" aria-hidden="true"></i> View</i>';
+    todoBtn.addEventListener('click', function () {
+        let todoContentBody = $('todo-content').getElementsByClassName('todo-content-body')[0];
+        todoContentBody.innerHTML = todo.content;
+    });
+
+    todoLine.appendChild(todoLabel);
+    todoLine.appendChild(todoDate);
+    todoLine.appendChild(todoCaption);
+    todoLine.appendChild(todoBtn);
+
+    return todoLine;
+}
 
 var todoService = (function () {
 
 
-    var todoList = [];
+    let todoList = [];
+    let subscribesAddTodo = [];
+
 
     function getTodoList() {
         return todoList;
     }
 
-    var addTodo = function (todo) {
+    let addTodo = function (todo) {
         todoList.push(todo);
+
+        for (let i =0; i<subscribesAddTodo.length; i++){
+            subscribesAddTodo[i].notify(todo);
+        }
     };
 
-    var removeTodo = function (id) {
+    let removeTodo = function (id) {
         for (let i = 0; i < todoList.length; i++) {
             if (todoList[i].id === id) {
                 todoList.splice(i, 1);
@@ -68,56 +108,31 @@ var todoService = (function () {
         }
     };
 
-    var createTodoListElements = function () {
+
+    let subscribeAddTodo = function(id, func){
+           let event = {
+               id:id,
+               notify:func
+           };
+
+           subscribesAddTodo.push(event);
+    };
+
+    let createTodoListElements = function () {
 
         for (let i = 0; i < todoList.length; i++) {
 
             let todo = todoList[i];
-
-            let todoLine = document.createElement("div");
-            todoLine.className = "todo-line";
-
-            let todoLabel = document.createElement("div");
-            todoLabel.className = "todo-label todo";
-
-            let tag = document.createElement("i");
-            tag.innerHTML = "Todo";
-            todoLabel.appendChild(tag);
-
-
-            let todoDate = document.createElement("div");
-            todoDate.className = 'todo-date';
-            todoDate.innerHTML = todo.getHumanDate();
-
-            let todoCaption = document.createElement("input");
-            todoCaption.className = "todo-caption";
-            todoCaption.value = todo.content;
-
-            let todoBtn = document.createElement("div");
-            todoBtn.className = "todo-btn";
-            todoBtn.innerHTML = '<i><i class="fa fa-eye" aria-hidden="true"></i> View</i>';
-            todoBtn.addEventListener('click', function () {
-                let todoContentBody = $('todo-content').getElementsByClassName('todo-content-body')[0];
-                todoContentBody.innerHTML = todo.content;
-            });
-
-            todoLine.appendChild(todoLabel);
-            todoLine.appendChild(todoDate);
-            todoLine.appendChild(todoCaption);
-            todoLine.appendChild(todoBtn);
-
-            document.getElementById('todo-box').appendChild(todoLine);
+            document.getElementById('todo-box').appendChild(insertDocTodo(todo));
         }
-
-
-
     };
 
     return {
         createTodoListElements: createTodoListElements,
         getTodoList: getTodoList,
         removeTodo: removeTodo,
-        addTodo: addTodo
+        addTodo: addTodo,
+        subscribeAddTodo:subscribeAddTodo
     }
 })
 ();
