@@ -8,7 +8,7 @@ function CreateTodo(caption, content, id) {
     this.date = new Date();
     this.caption = caption;
     this.content = content;
-    this.isComplete = false;
+    this.complete = false;
     this.type = 1;
 
     this.getHumanDate = function () {
@@ -49,17 +49,40 @@ function initTodo() {
        todoService.removeTodo(todo.id);
     });
 
+    $('btnDoneTodo').addEvent('click',function () {
+       let todo = todoService.getSelectedTodo();
+       todoService.setComplete(todo,true);
+
+    });
+
 }
 
 function insertDocTodo(todo) {
+
+    let  classLabel;
+    let tagCaption;
+    let classTodoCaption;
+    let todoBtn;
+    if (todo.complete === true){
+        classLabel =  "todo-label complete"
+        tagCaption = "Complete";
+        classTodoCaption = "todo-caption complete";
+        todoBtn = createBtnRedo(todo);
+    }else {
+        classLabel = "todo-label todo";
+        tagCaption = "Todo";
+        classTodoCaption = "todo-caption";
+        todoBtn = createBtnView(todo);
+    }
+
     let todoLine = document.createElement("div");
     todoLine.className = "todo-line";
 
     let todoLabel = document.createElement("div");
-    todoLabel.className = "todo-label todo";
+    todoLabel.className = classLabel;
 
     let tag = document.createElement("i");
-    tag.innerHTML = "Todo";
+    tag.innerHTML = tagCaption;
     todoLabel.appendChild(tag);
 
 
@@ -68,9 +91,21 @@ function insertDocTodo(todo) {
     todoDate.innerHTML = todo.getHumanDate();
 
     let todoCaption = document.createElement("input");
-    todoCaption.className = "todo-caption";
+    todoCaption.className = classTodoCaption;
     todoCaption.value = todo.caption;
 
+
+
+    todoLine.appendChild(todoLabel);
+    todoLine.appendChild(todoDate);
+    todoLine.appendChild(todoCaption);
+    todoLine.appendChild(todoBtn);
+
+    return todoLine;
+}
+
+
+function createBtnView(todo) {
     let todoBtn = document.createElement("div");
     todoBtn.className = "todo-btn";
     todoBtn.innerHTML = '<i><i class="fa fa-eye" aria-hidden="true"></i> View</i>';
@@ -79,12 +114,19 @@ function insertDocTodo(todo) {
         todoService.selectTodo(todo);
     });
 
-    todoLine.appendChild(todoLabel);
-    todoLine.appendChild(todoDate);
-    todoLine.appendChild(todoCaption);
-    todoLine.appendChild(todoBtn);
+    return todoBtn;
+}
 
-    return todoLine;
+function createBtnRedo(todo) {
+    let todoBtn = document.createElement("div");
+    todoBtn.className = "todo-btn complete";
+    todoBtn.innerHTML = '<i><i class="fa fa-refresh" aria-hidden="true"></i> Redo</i>';
+    todoBtn.addEventListener('click', function () {
+        todoService.setComplete(todo,false);
+        todoService.paintTodoList();
+    });
+
+    return todoBtn;
 }
 
 
@@ -98,78 +140,6 @@ function displayTodoContent(todo) {
 
 }
 
-var todoService = (function () {
 
-    let selectedTodo;
-    let todoList = [];
-    let subscribesObservers = [];
-
-
-    function getTodoList() {
-        return todoList;
-    }
-
-    function getSelectTodo() {
-        return selectedTodo;
-    }
-
-    let addTodo = function (todo) {
-        todoList.push(todo);
-
-        for (let i =0; i<subscribesObservers.length; i++){
-            subscribesObservers[i].addTodo(todo);
-        }
-    };
-
-    let removeTodo = function (id) {
-        for (let i = 0; i < todoList.length; i++) {
-            if (todoList[i].id === id) {
-
-                let deletedTodo = todoList[i];
-                todoList.splice(i, 1); // remote object via splice
-
-                for (let i =0; i<subscribesObservers.length; i++){
-                    subscribesObservers[i].removeTodo(deletedTodo);
-                }
-
-            }
-        }
-    };
-
-    let selectTodo = function (todo) {
-        selectedTodo = todo;
-    };
-
-    let subscribeObserver = function(id, addTodo, removeTodo){
-           let event = {
-               id:id,
-               addTodo:addTodo,
-               removeTodo:removeTodo
-           };
-
-           subscribesObservers.push(event);
-    };
-
-    let paintTodoList = function () {
-
-        $('todo-box').removeChildren();
-        for (let i = 0; i < todoList.length; i++) {
-
-            let todo = todoList[i];
-            document.getElementById('todo-box').appendChild(insertDocTodo(todo));
-        }
-    };
-
-    return {
-        paintTodoList: paintTodoList,
-        getTodoList: getTodoList,
-        removeTodo: removeTodo,
-        addTodo: addTodo,
-        subscribeObserver:subscribeObserver,
-        selectTodo:selectTodo,
-        getSelectedTodo:getSelectTodo
-    }
-})
-();
 
 

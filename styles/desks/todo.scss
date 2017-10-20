@@ -139,6 +139,10 @@
   font-weight: bold;
   width: 60%;
   cursor: pointer;
+
+  &.complete {
+    text-decoration:line-through;
+  }
 }
 
 .todo-caption:focus {
@@ -164,6 +168,11 @@
     font-style: normal;
     font-size: 10px;
 
+  }
+
+
+  &.complete {
+    background: $m-green;
   }
 
 }
