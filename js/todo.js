@@ -152,6 +152,7 @@ var todoService = (function () {
 
     let paintTodoList = function () {
 
+        $('todo-box').removeChildren();
         for (let i = 0; i < todoList.length; i++) {
 
             let todo = todoList[i];

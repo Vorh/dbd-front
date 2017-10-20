@@ -24,6 +24,12 @@ function $(id) {
         this.addEventListener(type, event);
     };
 
+    $.removeChildren = function () {
+        while ($.hasChildNodes()){
+            $.removeChild($.lastChild);
+        }
+    };
+
     $.clear = function () {
       $.value = '';
     };
