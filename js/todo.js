@@ -20,21 +20,23 @@ function CreateTodo(caption, content, id) {
 function initTodo() {
     let btn = $('btnCreateTodo');
 
-    let modalCreateTodo =$('modal-createTodo');
-    btn.addEvent('click',function () {
+    let modalCreateTodo = $('modal-createTodo');
+    btn.addEvent('click', function () {
         modalCreateTodo.setDisplay('block');
     });
 
-    modalCreateTodo.getElementsByClassName('close')[0].addEventListener('click',function () {
+    modalCreateTodo.getElementsByClassName('close')[0].addEventListener('click', function () {
         modalCreateTodo.setDisplay('none');
 
     });
 
 
-    modalCreateTodo.getElementsByClassName('green')[0].addEventListener('click',function () {
-        let caption  = $('modal-todo-caption').value;
+    modalCreateTodo.getElementsByClassName('green')[0].addEventListener('click', function () {
+        let caption = $('modal-todo-caption').value;
         let content = $('modal-todo-content').value;
-        let todo = new CreateTodo(caption,content,1);
+        let typeTodo = $('modal-todo-type').value;
+        let todo = new CreateTodo(caption, content, 1);
+        todo.type = typeTodo;
 
         todoService.addTodo(todo);
 
@@ -44,14 +46,14 @@ function initTodo() {
     });
 
 
-    $('btnDeleteTodo').addEvent('click',function () {
-       let todo = todoService.getSelectedTodo();
-       todoService.removeTodo(todo.id);
+    $('btnDeleteTodo').addEvent('click', function () {
+        let todo = todoService.getSelectedTodo();
+        todoService.removeTodo(todo.id);
     });
 
-    $('btnDoneTodo').addEvent('click',function () {
-       let todo = todoService.getSelectedTodo();
-       todoService.setComplete(todo,true);
+    $('btnDoneTodo').addEvent('click', function () {
+        let todo = todoService.getSelectedTodo();
+        todoService.setComplete(todo, true);
 
     });
 
@@ -59,20 +61,30 @@ function initTodo() {
 
 function insertDocTodo(todo) {
 
-    let  classLabel;
+    let classLabel;
     let tagCaption;
     let classTodoCaption;
     let todoBtn;
-    if (todo.complete === true){
-        classLabel =  "todo-label complete"
+    if (todo.complete === true) {
+        classLabel = "todo-label complete"
         tagCaption = "Complete";
         classTodoCaption = "todo-caption complete";
         todoBtn = createBtnRedo(todo);
-    }else {
-        classLabel = "todo-label todo";
-        tagCaption = "Todo";
+    } else {
+        switch (+todo.type) {
+            case 1:
+                classLabel = "todo-label todo";
+                tagCaption = "Todo";
+                break;
+            case 2:
+                classLabel = "todo-label job";
+                tagCaption = "Job";
+                break;
+        }
         classTodoCaption = "todo-caption";
         todoBtn = createBtnView(todo);
+
+
     }
 
     let todoLine = document.createElement("div");
@@ -93,7 +105,6 @@ function insertDocTodo(todo) {
     let todoCaption = document.createElement("input");
     todoCaption.className = classTodoCaption;
     todoCaption.value = todo.caption;
-
 
 
     todoLine.appendChild(todoLabel);
@@ -122,7 +133,7 @@ function createBtnRedo(todo) {
     todoBtn.className = "todo-btn complete";
     todoBtn.innerHTML = '<i><i class="fa fa-refresh" aria-hidden="true"></i> Redo</i>';
     todoBtn.addEventListener('click', function () {
-        todoService.setComplete(todo,false);
+        todoService.setComplete(todo, false);
         todoService.paintTodoList();
     });
 
