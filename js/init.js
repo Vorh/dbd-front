@@ -8,6 +8,7 @@
 var wss; // workspaces
 var todoService;
 var menu;
+var board;
 
 window.onload = function () {
 
@@ -31,6 +32,7 @@ window.onload = function () {
     }
 
 
+
     initTodo();
     forTest();
 
@@ -38,6 +40,14 @@ window.onload = function () {
     todoService.subscribeObserver('modalAddTodo',function (todo) {
         $('todo-box').appendChild(insertDocTodo(todo));
     });
+
+
+
+
+    board = new Board();
+
+    board.init($('board-desk'));
+
 
 };
 
