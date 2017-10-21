@@ -75,6 +75,11 @@
   position: relative;
   font-style: normal ;
 
+
+  &.select {
+    background: #314a61;
+  }
+
 }
 
 .todo-label {

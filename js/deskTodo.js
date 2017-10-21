@@ -3,7 +3,7 @@
  */
 
 
-function CreateTodo(caption, content, id) {
+function Todo(caption, content, id) {
     this.id = id;
     this.date = new Date();
     this.caption = caption;
@@ -35,7 +35,7 @@ function initTodo() {
         let caption = $('modal-todo-caption').value;
         let content = $('modal-todo-content').value;
         let typeTodo = $('modal-todo-type').value;
-        let todo = new CreateTodo(caption, content, 1);
+        let todo = new Todo(caption, content, 1);
         todo.type = typeTodo;
 
         todoService.addTodo(todo);
@@ -124,7 +124,20 @@ function insertDocTodo(todo) {
     todoLine.appendChild(todoCaption);
     todoLine.appendChild(todoBtn);
 
+    todoLine.addEventListener('click',function () {
+       unSelectTodoLine();
+       todoLine.className = 'todo-line select';
+    });
+
     return todoLine;
+}
+
+function unSelectTodoLine() {
+    let children = $('todo-box').children;
+
+    for (let i=0; i <children.length; i++){
+        children[i].className = 'todo-line';
+    }
 }
 
 
