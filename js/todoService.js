@@ -17,24 +17,25 @@ var todoService = (function () {
         return selectedTodo;
     }
 
-    let setComplete = function (todo,isComplete) {
-        for  (let i =0; i < todoList.length; i++){
-            if (todo.id === todoList[i].id){
-                todoList[i].complete = isComplete;
-                for (let i =0; i<subscribesObservers.length; i++){
-                    subscribesObservers[i].complete(todo);
-                }
-            }
-        }
 
+    let updateTodo = function (todo) {
+         let indexOf = todoList.findIndex(i=> i.id === todo.id);
+         todoService[indexOf] = todo;
+
+         notifySubscribes(todo);
+    };
+
+
+    let notifySubscribes = function (todo) {
+        for (let i =0; i<subscribesObservers.length; i++){
+            subscribesObservers[i].updateTodo(todo);
+        }
     };
 
     let addTodo = function (todo) {
         todoList.push(todo);
 
-        for (let i =0; i<subscribesObservers.length; i++){
-            subscribesObservers[i].addTodo(todo);
-        }
+        notifySubscribes(todo);
     };
 
     let removeTodo = function (id) {
@@ -42,11 +43,9 @@ var todoService = (function () {
             if (todoList[i].id === id) {
 
                 let deletedTodo = todoList[i];
-                todoList.splice(i, 1); // remote object via splice
+                deletedTodo.deleted = true;
 
-                for (let i =0; i<subscribesObservers.length; i++){
-                    subscribesObservers[i].removeTodo(deletedTodo);
-                }
+                notifySubscribes(deletedTodo);
 
             }
         }
@@ -56,12 +55,10 @@ var todoService = (function () {
         selectedTodo = todo;
     };
 
-    let subscribeObserver = function(id, addTodo, removeTodo,complete){
+    let subscribeObserver = function(id, update){
         let event = {
             id:id,
-            addTodo:addTodo,
-            removeTodo:removeTodo,
-            complete:complete
+            updateTodo:update
         };
 
         subscribesObservers.push(event);
@@ -84,8 +81,8 @@ var todoService = (function () {
         addTodo: addTodo,
         subscribeObserver:subscribeObserver,
         selectTodo:selectTodo,
-        setComplete:setComplete,
-        getSelectedTodo:getSelectTodo
+        getSelectedTodo:getSelectTodo,
+        updateTodo:updateTodo
     }
 })
 ();

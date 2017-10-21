@@ -9,6 +9,7 @@ function CreateTodo(caption, content, id) {
     this.caption = caption;
     this.content = content;
     this.complete = false;
+    this.deleted = false;
     this.type = 1;
 
     this.getHumanDate = function () {
@@ -18,10 +19,9 @@ function CreateTodo(caption, content, id) {
 
 
 function initTodo() {
-    let btn = $('btnCreateTodo');
 
     let modalCreateTodo = $('modal-createTodo');
-    btn.addEvent('click', function () {
+    $('btnCreateTodo').addEvent('click', function () {
         modalCreateTodo.setDisplay('block');
     });
 
@@ -49,11 +49,18 @@ function initTodo() {
     $('btnDeleteTodo').addEvent('click', function () {
         let todo = todoService.getSelectedTodo();
         todoService.removeTodo(todo.id);
+        todoService.paintTodoList();
     });
 
     $('btnDoneTodo').addEvent('click', function () {
         let todo = todoService.getSelectedTodo();
-        todoService.setComplete(todo, true);
+        todo.complete = true;
+        todoService.updateTodo(todo);
+        todoService.paintTodoList();
+
+    });
+
+    $('btnEditTodo').addEvent('click',function () {
 
     });
 
@@ -66,11 +73,16 @@ function insertDocTodo(todo) {
     let classTodoCaption;
     let todoBtn;
     if (todo.complete === true) {
-        classLabel = "todo-label complete"
+        classLabel = "todo-label complete";
         tagCaption = "Complete";
         classTodoCaption = "todo-caption complete";
         todoBtn = createBtnRedo(todo);
-    } else {
+    } else if(todo.deleted === true){
+        classLabel = "todo-label deleted";
+        tagCaption = "Delete";
+        classTodoCaption = "todo-caption deleted";
+        todoBtn = createBtnDelete(todo);
+    }else {
         switch (+todo.type) {
             case 1:
                 classLabel = "todo-label todo";
@@ -133,7 +145,21 @@ function createBtnRedo(todo) {
     todoBtn.className = "todo-btn complete";
     todoBtn.innerHTML = '<i><i class="fa fa-refresh" aria-hidden="true"></i> Redo</i>';
     todoBtn.addEventListener('click', function () {
-        todoService.setComplete(todo, false);
+        todo.complete = false;
+        todoService.updateTodo(todo);
+        todoService.paintTodoList();
+    });
+
+    return todoBtn;
+}
+
+function createBtnDelete(todo) {
+    let todoBtn = document.createElement("div");
+    todoBtn.className = "todo-btn deleted";
+    todoBtn.innerHTML = '<i><i class="fa fa-refresh" aria-hidden="true"></i> Restore</i>';
+    todoBtn.addEventListener('click', function () {
+        todo.deleted = false;
+        todoService.updateTodo(todo);
         todoService.paintTodoList();
     });
 
