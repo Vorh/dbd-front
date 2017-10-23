@@ -1,0 +1,15 @@
+
+
+.scroll-standard::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: $dark-bg;
+}
+
+.scroll-standard::-webkit-scrollbar {
+  width: 6px;
+  background-color: $blue-white;
+}
+
+.scroll-standard::-webkit-scrollbar-thumb {
+  background-color: $blue-white;
+}

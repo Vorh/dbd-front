@@ -1,9 +1,9 @@
 
 #board-desk {
-  height: 90%;
+  height: 93%;
   position: absolute;
-  left: 20%;
-  width: 79%;
+  left: 18%;
+  width: 81%;
   top: 6%;
   padding: 0;
   display: block;
@@ -22,9 +22,15 @@
   }
 
   td {
-    background: #01a252;
+    background: #377f78;
     margin: 2px;
     height: 10px;
+
+
+    &:hover {
+      background: $m-green;
+      cursor: pointer;
+    }
   }
 
   table {
