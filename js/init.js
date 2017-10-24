@@ -46,7 +46,7 @@ window.onload = function () {
 
     board = new Board();
 
-    board.init($('board-desk'));
+    board.init($('board-table'));
 
 
 };

@@ -19,6 +19,7 @@
 
 
 
+
   td {
     background: #377f78;
     margin: 2px;
@@ -51,6 +52,28 @@
 
 }
 
+#modal-board {
+  display: block;
+
+  .modal-content {
+    overflow: auto;
+    width: 95%;
+    height: 90%;
+    left: 1%;
+    top: 2%;
+    position: absolute;
+    margin: 0;
+
+
+    #board-table {
+      width: 100%;
+
+
+
+    }
+  }
+}
+
 .board-content {
   float: right;
   width: 40%;
@@ -63,11 +86,15 @@
   background: $m-green;
   width: 100%;
 
-  div {
+  .left {
     float: left;
-    display: block;
-    position: absolute;
   }
+
+  .right {
+    float: right;
+  }
+
+
 }
 
 
