@@ -3,12 +3,18 @@
  */
 
 
+
+
 function Board() {
 
     const column = 51;
     const row = 90;
 
-    this.init = function (parent) {
+    this.init = function (parent, goals) {
+
+        let currentDate = new Date();
+
+
 
         let table = document.createElement("table");
         let header = createHeaderTableHorizontal();
@@ -38,7 +44,10 @@ function Board() {
             for (let q = 1; q < column; q++) {
 
                 let td = document.createElement("td");
-
+                if (user.dateOfBirth <= currentDate){
+                    td.className = "emptiness";
+                    currentDate.setDate(currentDate.getDate()-7);
+                }
                 tr.appendChild(td);
             }
 

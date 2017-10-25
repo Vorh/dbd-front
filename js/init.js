@@ -9,6 +9,7 @@ var wss; // workspaces
 var todoService;
 var menu;
 var board;
+var user;
 
 window.onload = function () {
 
@@ -42,7 +43,12 @@ window.onload = function () {
     });
 
 
+    let dateOfBirth = new Date(1996, 8, 29);
 
+
+    user = new User();
+    user.dateOfBirth = dateOfBirth;
+    user.name = "Vorh";
 
     board = new Board();
 
