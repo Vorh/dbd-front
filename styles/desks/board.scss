@@ -1,4 +1,6 @@
 
+$board-td-size: 20px;
+
 #board-desk {
   height: 93%;
   position: absolute;
@@ -12,8 +14,8 @@
   overflow: auto;
 
 
-  table,th,td{
-    border: 1px solid black;
+  table{
+    //border: 1px solid black;
     border-collapse: collapse;
   }
 
@@ -23,8 +25,9 @@
   td {
     background: #377f78;
     margin: 2px;
-    height: 10px;
-
+    height: $board-td-size;
+    width: $board-td-size;
+    border: 1px solid black;
 
     &:hover {
       background: $m-green;
@@ -83,17 +86,17 @@
 
 
 .board-header {
-  background: $m-green;
-  width: 100%;
 
-  .left {
-    float: left;
+  .vertical {
+    width: $board-td-size;
+    height: $board-td-size;
+    text-align: center;
   }
 
-  .right {
-    float: right;
-  }
+  .horizontal {
+    text-align: left;
 
+  }
 
 }
 
