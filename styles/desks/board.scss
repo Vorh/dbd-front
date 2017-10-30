@@ -94,4 +94,13 @@ $board-td-size: 20px;
 }
 
 
+#board-item-window {
+  width: 100px;
+  height: 100px;
+  background: $m-green;
+  position: absolute;
+  display: none;
+}
+
+
 
