@@ -13,7 +13,6 @@ $board-td-size: 20px;
   overflow: auto;
 
   table {
-    //border: 1px solid black;
     border-collapse: collapse;
   }
 
@@ -81,13 +80,13 @@ $board-td-size: 20px;
 
 .board-header {
 
-  .vertical {
+  &.vertical {
     width: $board-td-size;
     height: $board-td-size;
     text-align: center;
   }
 
-  .horizontal {
+  &.horizontal {
     text-align: left;
 
   }
