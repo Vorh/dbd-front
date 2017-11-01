@@ -1,4 +1,4 @@
-$board-td-size: 20px;
+$board-td-size: 25px;
 
 #board-desk {
   height: 93%;
@@ -11,32 +11,8 @@ $board-td-size: 20px;
   margin-bottom: 0;
   margin-left: 10px;
 
-  .emptiness {
-    background: #2577ff;
-  }
 
-  td {
-    background: #377f78;
-    margin: 2px;
-    height: $board-td-size;
-    width: $board-td-size;
-    border: 1px solid black;
 
-    &:hover {
-      background: $m-green;
-      cursor: pointer;
-    }
-
-  }
-
-  table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-
-    border-spacing: 10px;
-
-  }
 }
 
 .board-activity {
@@ -59,10 +35,43 @@ $board-td-size: 20px;
     margin: 0;
 
     #board-table {
-      width: 100%;
-      height: 90%;
-      overflow: auto;
+      border-collapse: collapse;
+
+
+      .emptiness {
+        background: #2577ff;
+      }
+
+      thead {
+        tr {
+          th {
+            display: inline-block;
+            width: $board-td-size ;
+            height: $board-td-size;
+          }
+        }
+      }
+      tbody {
+        display: block;
+        overflow: auto;
+        height: 500px;
+
+
+        td {
+          background: #377f78;
+          height: $board-td-size;
+          width: $board-td-size;
+          border: 1px solid black;
+
+          &:hover {
+            background: $m-green;
+            cursor: pointer;
+          }
+
+        }
+      }
     }
+
   }
 }
 

@@ -16,10 +16,6 @@ function Board() {
         let currentDate = new Date();
 
 
-        let table = document.createElement("table");
-        let header = createHeaderTableHorizontal();
-        table.appendChild(header);
-
 
         for (let i = 0; i < row; i++) {
 
@@ -42,8 +38,8 @@ function Board() {
 
                 td.addEventListener('click',function () {
                     let offset = getOffset(td,parent);
-                    let left = offset.left+54;
-                    let top = offset.top+87;
+                    let left = offset.left;
+                    let top = offset.top;
 
                     let boardModal = $('board-item-window');
                     boardModal.style = 'left:' + left + 'px; top:' + top + 'px';
@@ -55,11 +51,9 @@ function Board() {
 
             }
 
-            table.appendChild(tr);
+            parent.appendChild(tr);
 
         }
-
-        parent.appendChild(table);
 
 
         $('close-modal-content-board').addEvent('click',function () {

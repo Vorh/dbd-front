@@ -25,7 +25,7 @@
         <li id="board-menu-item"><i class="fa fa-desktop" aria-hidden="true"></i>Board</li>
     </ul>
 </div>
-<dev id="desk">
+<div id="desk">
     <div id="todo-desk">
         <div id="todo-activity">
             <div class="desk-header">
@@ -40,7 +40,7 @@
                         <span>Content</span><br>
                         <input id="modal-todo-content"><br>
                         <span>Type</span><br>
-                        <select id="modal-todo-type" >
+                        <select id="modal-todo-type">
                             <option value="1">Todo</option>
                             <option value="2">Job</option>
                         </select>
@@ -56,7 +56,8 @@
         <div id="todo-content">
             <div class="desk-header">
                 <a class="desk-caption">Content</a>
-                <div id="btnDoneTodo" class="bnt green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Done </div>
+                <div id="btnDoneTodo" class="bnt green"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Done
+                </div>
                 <div id="btnEditTodo" class="bnt blue"><i class="fa fa-wrench" aria-hidden="true"></i> Edit</div>
                 <div id="btnDeleteTodo" class="bnt red"><i class="fa fa-trash" aria-hidden="true"></i> Delete</div>
             </div>
@@ -76,15 +77,36 @@
     <div id="board-desk" class="scroll-standard">
         <div class="modal" id="modal-board">
             <div id="modal-content-board" class="modal-content scroll-standard">
-                <div id="life-calendar-caption">Life board (90 years)<i id="close-modal-content-board" class="fa fa-times" aria-hidden="true"></i></div>
+                <div id="life-calendar-caption">Life board (90 years)<i id="close-modal-content-board"
+                                                                        class="fa fa-times" aria-hidden="true"></i>
+                </div>
                 <div id="board-item-window">
                     <span> date</span>
                     <span> Close</span>
                 </div>
-                <div class="scroll-standard" id="board-table"></div>
+                <table id="board-table">
+                    <thead>
+                    <tr>
+                        <th colspan="4">0</th>
+                        <th colspan="4">5</thc>
+                        <th>10</th>
+                        <th>15</th>
+                        <th>20</th>
+                        <th>25</th>
+                        <th>30</th>
+                        <th>35</th>
+                        <th>40</th>
+                        <th>45</th>
+                        <th>50</th>
+                    </tr>
+                    </thead>
+                    <tbody class="scroll-standard">
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</dev>
+</div>
 </body>
 </html>

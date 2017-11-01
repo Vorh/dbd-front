@@ -63,7 +63,7 @@ window.onload = function () {
 
     board = new Board();
 
-    board.init($('board-table'));
+    board.init($('board-table').getElementsByTagName('tbody')[0]);
 
 
 };
