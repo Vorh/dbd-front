@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Vorh/dbd-front#readme",
   "devDependencies": {
     "browserify-css": "^0.12.1"
+  },
+  "dependencies": {
+    "watchify": "^3.9.0"
   }
 }

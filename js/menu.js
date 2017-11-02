@@ -3,18 +3,16 @@
  */
 
 
-module.exports = function Menu() {
+module.exports = (function Menu() {
 
 
-    var self = this;
+    let self = this;
 
     this.addEventSelectToItemMenu = function (itemMenu) {
         itemMenu.addEvent("click", function () {
             self.switchMenu(itemMenu);
         });
     };
-
-
 
     this.switchMenu = function (itemMenu) {
         for (let i = 0; i < wss.length; i++) {
@@ -29,10 +27,10 @@ module.exports = function Menu() {
                 tempItem.removeClass("hovered");
                 tempDesk.setDisplay("none");
             }
-
         }
+
     };
-};
+});
 
 
 
