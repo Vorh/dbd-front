@@ -1,0 +1,22 @@
+{
+  "name": "dbd-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vorh/dbd-front.git"
+  },
+  "author": "Vorh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vorh/dbd-front/issues"
+  },
+  "homepage": "https://github.com/Vorh/dbd-front#readme",
+  "devDependencies": {
+    "browserify-css": "^0.12.1"
+  }
+}

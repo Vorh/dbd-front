@@ -3,11 +3,22 @@
  */
 
 
+var css = require('../styles/main.css');
+
+var menu = require('./menu.js');
+var user = require('./user.js');
+var $ = require('./utils.js');
+var workspace = require('./workspace.js');
+
+var deskTodo = require('./todo/deskTodo.js');
+var todoService = require('./todo/todo.js');
+var goals = require('./goal/goal.js');
+var board = require('./board/board.js');
+
+
 
 
 var wss; // workspaces
-var todoService;
-var menu;
 var board;
 var user;
 
@@ -27,8 +38,6 @@ window.onload = function () {
 
 
 
-    todoService = new TodoService();
-    menu = new Menu();
     wss = [];
 
     let itemsMenu = $('menu').getElementsByTagName('li');
@@ -45,8 +54,8 @@ window.onload = function () {
 
 
 
-    initTodo();
-    forTest();
+    deskTodo.initTodo();
+    deskTodo.forTest();
 
     todoService.paintTodoList();
     todoService.subscribeObserver('modalAddTodo',function (todo) {

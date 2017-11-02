@@ -2,9 +2,7 @@
  * Created by vorh on 10/1/17.
  */
 
-function $(id) {
-    console.log('get element by id = ' + id);
-
+module.exports = function $(id) {
 
     var $ = document.getElementById(id);
 

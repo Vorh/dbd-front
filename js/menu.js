@@ -3,7 +3,7 @@
  */
 
 
-function Menu() {
+module.exports = function Menu() {
 
 
     var self = this;
@@ -32,7 +32,7 @@ function Menu() {
 
         }
     };
-}
+};
 
 
 

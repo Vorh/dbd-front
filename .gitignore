@@ -8,3 +8,8 @@ photo_2017-09-29_00-51-40.jpg
 *.css*
 .gitingore
 .idea/
+
+node_modules/
+dist/
+bundle.js
+package-lock.json
