@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "babel": "babel --presets es2015 src/js/main.js -o dist/bundle.js",
+    "start": "http-server"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,11 @@
   },
   "homepage": "https://github.com/Vorh/dbd-front#readme",
   "devDependencies": {
-    "browserify-css": "^0.12.1"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "browserify-css": "^0.12.1",
+    "http-server": "^0.10.0"
   },
   "dependencies": {
     "watchify": "^3.9.0"

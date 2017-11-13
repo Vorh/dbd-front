@@ -3,7 +3,7 @@
  */
 
 
-var css = require('../styles/main.css');
+var css = require('../css/main.css');
 
 var menu = require('./menu.js');
 var user = require('./user.js');
